@@ -162,6 +162,7 @@
       <p id="leadModalCopy">We already know the property. Just tell us how to reach you.</p>
       <form id="leadForm" class="lead-form">
         <input type="hidden" id="leadIntent" name="conversionIntent" value="full_brief" />
+        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label>Full name<input type="text" name="name" autocomplete="name" required /></label>
         <label>Mobile number<input type="tel" name="mobile" autocomplete="tel" inputmode="tel" required /></label>
         <label>Email <span class="optional-label">optional</span><input type="email" name="email" autocomplete="email" /></label>
@@ -170,6 +171,7 @@
           <strong>Buying through Toronto House Market? Eligible buyers may receive up to $10,000 cashback.</strong>
           <small>Eligibility and terms are confirmed with you before you proceed.</small>
         </div>
+        <p id="leadFormError" class="form-note hidden" role="alert"></p>
         <button id="leadSubmitButton" class="btn btn-primary full" type="submit">Continue</button>
         <small class="form-note">Your property and selected next step are attached automatically.</small>
       </form>
