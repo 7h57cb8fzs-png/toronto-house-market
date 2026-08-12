@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Toronto House Market — See the home. Understand the deal." />
+  <title>Toronto House Market</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header glass">
+      <a class="brand" href="#top" aria-label="Toronto House Market home">
+        <span class="brand-mark">THM</span>
+        <span class="brand-copy"><strong>Toronto House Market</strong><small>torontohousemarket.com</small></span>
+      </a>
+      <nav class="nav-actions">
+        <button class="nav-link" data-scroll="#how">How it works</button>
+        <button class="nav-link" data-scroll="#trust">Why THM</button>
+        <button class="btn btn-ghost" data-action="showing">Book a showing</button>
+      </nav>
+    </header>
+
+    <div class="brokerage-strip" id="top">CENTURY 21 Leading Edge Realty Inc., Brokerage</div>
+
+    <main>
+      <section class="hero-section">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="dot"></span> AI-assisted property intelligence</span>
+          <h1>See the home.<br /><span>Understand the deal.</span></h1>
+          <p class="hero-subtitle">Paste a listing you are considering and get a fast buyer-focused snapshot before you book a showing or make an offer.</p>
+
+          <form id="analysisForm" class="analysis-box glass-card">
+            <label for="propertyInput">Property</label>
+            <div class="input-row">
+              <input id="propertyInput" type="text" placeholder="Paste Realtor.ca link, MLS #, or property address" required />
+              <button class="btn btn-primary" type="submit">Analyze this home</button>
+            </div>
+            <div class="input-meta">
+              <span>No registration required for the first snapshot.</span>
+              <button class="text-button" type="button" data-action="showing">Book a showing instead</button>
+            </div>
+          </form>
+
+          <div class="hero-trust-row">
+            <div><strong>Fast</strong><span>first-pass analysis</span></div>
+            <div><strong>Buyer-first</strong><span>practical deal context</span></div>
+            <div><strong>Human-backed</strong><span>local Realtor judgment</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-preview">
+          <div class="preview-card glass-card">
+            <div class="preview-topline">
+              <span class="mini-label">AI PROPERTY BRIEF</span>
+              <span class="status-pill">Worth viewing</span>
+            </div>
+            <div class="property-mini">
+              <div><strong>Example GTA Home</strong><span>Buyer Decision Snapshot</span></div>
+              <span class="price-tag">$1.09M</span>
+            </div>
+            <div class="bento-grid">
+              <article class="bento-card large"><span>Price signal</span><strong>Within range</strong><small>Asking price appears close to recent comparable activity.</small></article>
+              <article class="bento-card"><span>Market pace</span><strong>18 days</strong><small>Moderate</small></article>
+              <article class="bento-card"><span>Flags</span><strong>2</strong><small>Worth checking</small></article>
+              <article class="bento-card wide accent-soft"><span>Next move</span><strong>View it, then validate condition + comparable quality.</strong></article>
+            </div>
+            <p class="philosophy">AI for speed. <strong>People for judgment.</strong></p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="snapshotSection" class="snapshot-section hidden">
+        <div class="section-heading">
+          <span class="eyebrow"><span class="dot"></span> Instant Buyer Decision Snapshot</span>
+          <h2 id="snapshotProperty">Property snapshot</h2>
+          <p>You get the first useful layer before we ask you to register.</p>
+        </div>
+
+        <div class="snapshot-layout">
+          <div class="snapshot-main glass-card">
+            <div class="decision-banner">
+              <div><span class="mini-label">CURRENT SIGNAL</span><h3>Worth viewing</h3></div>
+              <div class="confidence-ring"><span>Good</span></div>
+            </div>
+
+            <div class="snapshot-grid">
+              <article class="metric-card"><span>Asking-price context</span><strong>$1.09M</strong><small>Looks broadly aligned with the sample comp band.</small></article>
+              <article class="metric-card"><span>Indicative comp range</span><strong>$1.03M–$1.12M</strong><small>Illustrative until live listing/IDX data is connected.</small></article>
+              <article class="metric-card"><span>Market activity</span><strong>18 DOM</strong><small>Enough time on market to investigate seller motivation.</small></article>
+              <article class="metric-card"><span>Listing flags</span><strong>2 items</strong><small>Review condition language and renovation claims.</small></article>
+            </div>
+
+            <div class="detail-grid">
+              <article class="detail-card">
+                <div class="detail-heading"><span>Relevant comps</span><strong>3</strong></div>
+                <ul>
+                  <li><span>Comp A</span><strong>$1.08M</strong><small>similar size</small></li>
+                  <li><span>Comp B</span><strong>$1.12M</strong><small>better finish</small></li>
+                  <li><span>Comp C</span><strong>$1.03M</strong><small>inferior lot</small></li>
+                </ul>
+              </article>
+              <article class="detail-card">
+                <div class="detail-heading"><span>Questions to ask</span><strong>3</strong></div>
+                <ol>
+                  <li>Why has the property remained on market at this price?</li>
+                  <li>Which renovations were permitted and when?</li>
+                  <li>Are there offer expectations or a preferred closing timeline?</li>
+                </ol>
+              </article>
+            </div>
+
+            <div class="recommendation-card">
+              <span class="mini-label">RECOMMENDED NEXT MOVE</span>
+              <h3>Book the showing, then compare condition against the stronger comps before deciding your offer range.</h3>
+            </div>
+          </div>
+
+          <aside class="snapshot-side">
+            <div class="next-step-card glass-card">
+              <span class="mini-label">TAKE THE NEXT STEP</span>
+              <h3>Want the deeper brief?</h3>
+              <p>Unlock the full property analysis or have a local Realtor arrange a showing.</p>
+              <button class="btn btn-primary full" data-action="unlock">Unlock Full AI Property Brief</button>
+              <button class="btn btn-secondary full" data-action="showing">Book a Showing</button>
+              <div class="cashback-note">
+                <span>Buyer benefit</span>
+                <strong>Eligible buyers may receive up to $10K cashback.</strong>
+                <small>Eligibility and terms are confirmed before you proceed.</small>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="how" class="content-section">
+        <div class="section-heading compact">
+          <span class="eyebrow"><span class="dot"></span> How it works</span>
+          <h2>Useful first. Registration second.</h2>
+        </div>
+        <div class="steps-grid">
+          <article><span>01</span><h3>Paste the property</h3><p>Use a Realtor.ca link, MLS number, or address.</p></article>
+          <article><span>02</span><h3>Get the snapshot</h3><p>See price context, comps, flags, questions, and a recommended next move.</p></article>
+          <article><span>03</span><h3>Go deeper when ready</h3><p>Unlock the full brief or request a showing with a local Realtor.</p></article>
+        </div>
+      </section>
+
+      <section id="trust" class="trust-section glass-card">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Built for GTA buyers</span>
+          <h2>Technology for speed. Realtor judgment where it matters.</h2>
+        </div>
+        <div class="trust-list"><span>Toronto</span><span>York</span><span>Peel</span><span>Durham</span><span>Halton</span></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><strong>Toronto House Market</strong><span>torontohousemarket.com</span></div>
+      <div class="footer-brokerage">CENTURY 21 Leading Edge Realty Inc., Brokerage</div>
+      <div class="footer-note">Prototype — live listing intelligence connects after IDX approval.</div>
+    </footer>
+  </div>
+
+  <div id="leadModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card glass-card">
+      <button class="modal-close" type="button">×</button>
+      <span class="mini-label">NEXT STEP</span>
+      <h2 id="leadModalTitle">Continue with this property</h2>
+      <p id="leadModalCopy">Tell us where to send the deeper brief and how you want to proceed.</p>
+      <form id="leadForm" class="lead-form">
+        <input type="hidden" id="leadIntent" value="full_brief" />
+        <label>Full name<input type="text" name="name" required /></label>
+        <label>Mobile<input type="tel" name="mobile" /></label>
+        <label>Email<input type="email" name="email" required /></label>
+        <label>Buyer intent
+          <select name="buyerIntent" required>
+            <option value="">Select one</option>
+            <option>Actively buying now</option>
+            <option>Buying in 1–3 months</option>
+            <option>Researching / comparing</option>
+            <option>Investor</option>
+          </select>
+        </label>
+        <button class="btn btn-primary full" type="submit">Continue</button>
+        <small class="form-note">Prototype only. Production will submit securely to Supabase.</small>
+      </form>
+      <div id="leadSuccess" class="success-state hidden">
+        <div class="success-icon">✓</div>
+        <h3>Request captured in the prototype.</h3>
+        <p>The production version will attach this property automatically and route the lead through the Realtor response workflow.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
