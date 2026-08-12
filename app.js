@@ -12,6 +12,10 @@ const leadSuccessTitle = document.getElementById("leadSuccessTitle");
 const leadSuccessCopy = document.getElementById("leadSuccessCopy");
 const showingBenefit = document.getElementById("showingBenefit");
 const leadSubmitButton = document.getElementById("leadSubmitButton");
+const leadFormError = document.getElementById("leadFormError");
+
+const SUBMIT_LEAD_URL = "https://kpbvzifpajcqgjuyvkfg.supabase.co/functions/v1/submit-lead";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwYnZ6aWZwYWpjcWdqdXl2a2ZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY1NTY1MTcsImV4cCI6MjEwMjEzMjUxN30.qajEEZYVqkJnDwuotCtV2LsFgqxowp1E7Jr4wyROb38";
 
 let activeProperty = "";
 
@@ -35,6 +39,8 @@ document.querySelectorAll("[data-scroll]").forEach((button) => {
 function openLeadModal(intent) {
   leadForm.classList.remove("hidden");
   leadSuccess.classList.add("hidden");
+  leadFormError.classList.add("hidden");
+  leadFormError.textContent = "";
   leadForm.reset();
   leadIntent.value = intent;
 
@@ -55,6 +61,7 @@ function openLeadModal(intent) {
     leadSubmitButton.textContent = "Get My Full AI Brief";
   }
 
+  leadSubmitButton.disabled = false;
   leadModal.classList.remove("hidden");
 }
 
@@ -72,22 +79,63 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") leadModal.classList.add("hidden");
 });
 
-leadForm.addEventListener("submit", (event) => {
+leadForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = new FormData(leadForm);
   const mobile = String(formData.get("mobile") || "").trim();
-  if (!mobile) return;
-
+  const name = String(formData.get("name") || "").trim();
+  const email = String(formData.get("email") || "").trim();
+  const website = String(formData.get("website") || "").trim();
   const intent = leadIntent.value;
-  leadForm.classList.add("hidden");
-  leadSuccess.classList.remove("hidden");
 
-  if (intent === "showing_request") {
-    leadSuccessTitle.textContent = "Showing request received.";
-    leadSuccessCopy.textContent = "A local Realtor will contact you shortly to arrange access to this home.";
-  } else {
-    leadSuccessTitle.textContent = "Full AI Property Brief requested.";
-    leadSuccessCopy.textContent = "We have your property and contact details ready for the deeper analysis step.";
+  if (!name || !mobile || !activeProperty) return;
+
+  const originalButtonText = leadSubmitButton.textContent;
+  leadSubmitButton.disabled = true;
+  leadSubmitButton.textContent = "Sending…";
+  leadFormError.classList.add("hidden");
+  leadFormError.textContent = "";
+
+  try {
+    const response = await fetch(SUBMIT_LEAD_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+      },
+      body: JSON.stringify({
+        property_input: activeProperty,
+        name,
+        mobile,
+        email,
+        website,
+        conversion_intent: intent,
+        page_url: window.location.href,
+        referrer: document.referrer || null,
+      }),
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || "Unable to send your request right now.");
+    }
+
+    leadForm.classList.add("hidden");
+    leadSuccess.classList.remove("hidden");
+
+    if (intent === "showing_request") {
+      leadSuccessTitle.textContent = "Showing request received.";
+      leadSuccessCopy.textContent = "A local Realtor will contact you shortly to arrange access to this home.";
+    } else {
+      leadSuccessTitle.textContent = "Full AI Property Brief requested.";
+      leadSuccessCopy.textContent = "We have your property and contact details ready for the deeper analysis step.";
+    }
+  } catch (error) {
+    leadFormError.textContent = error instanceof Error ? error.message : "Unable to send your request right now.";
+    leadFormError.classList.remove("hidden");
+    leadSubmitButton.disabled = false;
+    leadSubmitButton.textContent = originalButtonText;
   }
 });
